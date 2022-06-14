@@ -11,11 +11,12 @@ namespace CatchTheAce
             public static int Count = 2;
             public static List<int> deck = new List<int>();
 
-            public Deck()
+            public Deck(int years)
             {
+                Years = years;
                 
             }
-            public List<int> CreateDeck()
+            public static List<int> CreateDeck()
             {
                 for (int i = 0; i < 5; i++)
                 {
@@ -30,6 +31,13 @@ namespace CatchTheAce
                     }
                 }
                 return deck;
+            }
+
+            public static List<List<int>> AddDeckToCollection()
+            {
+                List<List<int>> DeckCollection = new List<List<int>>(Years);
+                DeckCollection.Add(CreateDeck());
+                return DeckCollection;
             }
             public int GoThroughDeck(List<int> deck)
             {
@@ -77,18 +85,16 @@ namespace CatchTheAce
         }
         static void Main(string[] args)
         {
-            //Console.WriteLine("how many years? ");
-            //int NumOfYears = Console.Read();
-            Deck deck = new Deck();
-            deck.CreateDeck();
-            string answer = deck.CalculatePercentage(3);
-            Console.WriteLine(answer);
-
-
-            //foreach(string r in results)
-            //{
-            //    Console.WriteLine(r);
-            //}
+            List<List<int>> list = new List<List<int>>() {new List<int> { 1, 2, 3 }, new List<int>{ 4,5,6} };
+            Console.WriteLine(list[0][2]);
+            List<int> list2 = new List<int>() { 7,8,9};
+            list.Add(list2);
+            Console.WriteLine(list[2][2]);
+            Deck deck2 = new Deck(5);
+            deck2.CreateDeck();
+            
+            
+          
 
 
         }
