@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchTheAce", "CatchTheAce\CatchTheAce.csproj", "{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73376CDB-95AD-4B91-B70B-5949050E9C35}
+	EndGlobalSection
+EndGlobal
