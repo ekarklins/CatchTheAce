@@ -10,6 +10,7 @@ namespace CatchTheAce
 
             List<int> deck = new List<int>();
 
+
             for (int i = 0; i < 10; i++)
             {
                 int random = new Random().Next(0, 52);
