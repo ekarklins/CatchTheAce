@@ -9,7 +9,25 @@ namespace CatchTheAce
         // a method that fills an empty list
     }
 
-    public class DeckBuilder { }
+    public class DeckBuilder {
+        public static List<int> deck = new List<int>();
+        public List<int> CreateDeck()
+        {
+            for(int i = 0; i<52; i++)
+            {
+                int random = new Random().Next(1, 53);
+                if (!deck.Contains(random))
+                {
+                    deck.Add(random);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            return deck;
+        }
+    }
    
 
     public class DeckCollection { }
