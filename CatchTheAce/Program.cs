@@ -46,6 +46,10 @@ namespace CatchTheAce
             return weeks;
            
         }
+        public float PercentageCalculator(int years, int count)
+        {
+            return ((float)count / (float)years) * 100;
+        }
 
     }
     // a method that goes through the deck collection and logs the results in a list/array?
@@ -61,24 +65,11 @@ namespace CatchTheAce
     {
         public static void Main(string[] args)
         {
+            int years1 = 10;
+            int count1 = 3;
 
+            Console.WriteLine(((float)count1 / (float)years1)*100);
 
-            List<List<int>> list2d = new List<List<int>>();
-            List<int> listint1 = new List<int>() { 1, 2, 3 };
-            List<int> listint2 = new List<int>() { 4, 5, 6 };
-
-            list2d.Add(listint1);
-            list2d.Add(listint2);
-
-            for (int i = 0; i < list2d.Count; i++)
-            {
-                for(int j = 0; j < list2d[i].Count; j++)
-                {
-                    Console.WriteLine("j:" + j);
-                    Console.WriteLine("value:" + list2d[i][j]);
-                }
-                Console.WriteLine("i:" + i);
-            }
 
         }
     }
