@@ -1,95 +1,84 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
+using System.Linq;
 
 namespace CatchTheAce
 {
+    public class Deck { 
+        // a method that creates an empty list
+        // a method that fills an empty list
+    }
+
+    public class DeckBuilder { }
+   
+
+    public class DeckCollection { }
+    // a method that adds a deck to the deck collection (2d list/ 2d array)?
+    // if array, set size as number of years?
+    //make a recursive call until collection reaches max capacity?
+
+    public class Results {
+        public static int count;
+        public static List<int> weeks;
+        public List<int> GoThroughResults(List<List<int>> collection)
+        {
+            //takes in a 2d list(collection)
+            for (int i = 0; i < collection.Count; i++)
+            {
+                for (int j = 0; j < collection[i].Count; j++)
+                {
+                    int index = collection[i].IndexOf(52);
+                    if(collection[i][j] == 52)
+                    {
+                        if (index == 51)
+                        {
+                            count++;
+                            weeks.Add(index);
+                            
+                        }
+                        else
+                        {
+                            weeks.Add(index);
+                        }
+                    }
+                }
+            }
+            return weeks;
+           
+        }
+
+    }
+    // a method that goes through the deck collection and logs the results in a list/array?
+    // a method that calculates percentage
+    // a method that formats the results so the UI class can use them?
+
+    public class UI { }
+    // a method that outputs the method to get user input
+    // a method that displays the results
+
+
     internal class Program
     {
-        public class Deck
+        public static void Main(string[] args)
         {
-            public static int Years;
-            public static int Count = 2;
-            public static List<int> deck = new List<int>();
 
-            public Deck()
+
+            List<List<int>> list2d = new List<List<int>>();
+            List<int> listint1 = new List<int>() { 1, 2, 3 };
+            List<int> listint2 = new List<int>() { 4, 5, 6 };
+
+            list2d.Add(listint1);
+            list2d.Add(listint2);
+
+            for (int i = 0; i < list2d.Count; i++)
             {
-                
+                for(int j = 0; j < list2d[i].Count; j++)
+                {
+                    Console.WriteLine("j:" + j);
+                    Console.WriteLine("value:" + list2d[i][j]);
+                }
+                Console.WriteLine("i:" + i);
             }
-            public List<int> CreateDeck()
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    int random = new Random().Next(1, 6);
-                    if (!deck.Contains(random))
-                    {
-                        deck.Add(random);
-                    }
-                    else
-                    {
-                        i--;
-                    }
-                }
-                return deck;
-            }
-            public int GoThroughDeck(List<int> deck)
-            {
-                //go through deck
-                //return the week that ace of spades is drawn(#52)
-                int index = deck.IndexOf(5);
-                if (index == 0)
-                {
-                    return Count++;
-                }
-                else
-                {
-                    return index;
-                }
-            }
-            //public int GetUserInput()
-            //{
-            //    // parse user input to string
-            //    Console.WriteLine("how many years:");
-            //    string input = Console.ReadLine();
-            //    Years = int.Parse(input);
-            //    return Years;
-            //}
-            //public int NumOfDecks()
-            //{
-            //    //return years * deck
-            //}
-            public string CalculatePercentage(int years)
-            {
-                Years = years;
-                string weeknum = ("Ace of Spades was found on week: " + GoThroughDeck(deck));
-                string percentage = "";
-                if(Count != 0)
-                {
-                    percentage = percentage + ("Percentage: " + (float)(Count / Years) + "%");
-
-                }
-                else
-                {
-                    percentage = percentage + ("Percentage: 0%");
-                }
-                return weeknum + " " + percentage;
-                //return years / amount of times ace of spades was drawn
-            }
-        }
-        static void Main(string[] args)
-        {
-            //Console.WriteLine("how many years? ");
-            //int NumOfYears = Console.Read();
-            Deck deck = new Deck();
-            deck.CreateDeck();
-            string answer = deck.CalculatePercentage(3);
-            Console.WriteLine(answer);
-
-
-            //foreach(string r in results)
-            //{
-            //    Console.WriteLine(r);
-            //}
-
 
         }
     }
