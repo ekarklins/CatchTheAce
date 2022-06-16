@@ -4,7 +4,11 @@ using System.Linq;
 
 namespace CatchTheAce
 {
-    public class Deck { 
+    public class Deck : DeckBuilder
+    {
+        public static int Years;
+        public static int Counter;
+
         // a method that creates an empty list
         // a method that fills an empty list
     }
@@ -36,6 +40,7 @@ namespace CatchTheAce
         public static List<List<int>> collection = new List<List<int>>();
         public List<List<int>> CreateCollection(int years)
         {
+            Deck.Years = years;
             for(int i = 0; i < years; i++)
             {
                 collection.Add(CreateDeck());
@@ -47,11 +52,10 @@ namespace CatchTheAce
     // if array, set size as number of years?
     //make a recursive call until collection reaches max capacity?
 
-    public class Results 
-    {
-        public static int count;
-        public static List<int> weeks;
-        public List<int> GoThroughResults(List<List<int>> collection)
+    public class Results : DeckCollection
+    {      
+        public static List<int> weeks = new List<int>();
+        public static List<int> GoThroughResults(List<List<int>> collection)
         {
             //takes in a 2d list(collection)
             for (int i = 0; i < collection.Count; i++)
@@ -61,35 +65,55 @@ namespace CatchTheAce
                     int index = collection[i].IndexOf(52);
                     if(collection[i][j] == 52)
                     {
-                        if (index == 51)
+                        if (index == 51)//change back to 51
                         {
-                            count++;
+                            Deck.Counter++;
+                            //Console.WriteLine(index);
                             weeks.Add(index);
-                            
                         }
                         else
                         {
+                            //Console.WriteLine(index);
                             weeks.Add(index);
                         }
                     }
                 }
             }
+            //Console.WriteLine(Counter);
             return weeks;
-           
         }
-        public float PercentageCalculator(int years, int count)
+        public float PercentageCalculator(int years, int counter)
         {
-            return ((float)count / (float)years) * 100;
+            Deck.Counter = counter;
+            Deck.Years = years;
+            return ((float)counter / (float)years) * 100;
         }
-
-
-
     }
     // a method that goes through the deck collection and logs the results in a list/array?
     // a method that calculates percentage
     // a method that formats the results so the UI class can use them?
 
-    public class UI { }
+    public class UI : Results
+    {
+        public int GetUserInput() 
+        {
+            Console.WriteLine("How many years? ");
+            var input = Console.ReadLine();
+            int years = int.Parse(input);
+            return Deck.Years = years;
+        }
+        public string DisplayResults(List<int> weeks, int years, int counter)
+        {
+            Deck.Counter = counter;
+            Deck.Years = years;
+            for (int i = 0; i < weeks.Count; i++)
+            {
+                return ($"Ace of Spades found on week{weeks[i]+1}");
+            }
+            return ($"Ace of Spades was found on the last week {counter} times. Percentage: {((float)counter / (float)years)*100}");
+        }
+
+    }
     // a method that outputs the method to get user input
     // a method that displays the results
 
@@ -98,35 +122,21 @@ namespace CatchTheAce
     {
         public static void Main(string[] args)
         {
-            List<List<int>> decks = new List<List<int>>(3);
-            List<int> deck1 = new List<int>() { 1, 2, 3, 4, 5 };
-            List<int> deck2 = new List<int>() { 6, 7, 8, 9, 10 };
-            List<int> deck3 = new List<int>() { 11, 12, 13, 14, 15 };
-            List<int> deck4 = new List<int>() { 16, 17, 18, 19, 20 };
-
-            decks.Add(deck1);
-            decks.Add(deck2);
-            decks.Add(deck3);
-            for (int i = 0; i < decks.Count; i++)
-            {
-                for(int j = 0; j < decks[i].Count; j++)
-                {
-                    Console.WriteLine(decks[i][j]);
-                }
-            }
-            decks.Add(deck4);
-            for (int i = 0; i < decks.Count; i++)
-            {
-                for (int j = 0; j < decks[i].Count; j++)
-                {
-                    Console.WriteLine(decks[i][j]);
-                }
-            }
-
-
-
-
+            List<List<int>> list = new List<List<int>>();
+            List<int> deck1 = new List<int>() { 52, 2, 8, 5 };
+            List<int> deck2 = new List<int>() { 12, 15, 52, 67 };
+            List<int> deck3 = new List<int>() { 32, 43, 50, 52 };
+            list.Add(deck1);
+            list.Add(deck2);
+            list.Add(deck3);
+            Console.WriteLine(Results.GoThroughResults(list));
+            
         }
+
+         
+
+
+    
     }
 
 }
