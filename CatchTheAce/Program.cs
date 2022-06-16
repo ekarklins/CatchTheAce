@@ -1,6 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System;
-using System.Linq;
 
 namespace CatchTheAce
 {
@@ -8,14 +6,14 @@ namespace CatchTheAce
     {
         public static int Years;
         public static int Counter;
-
-        // a method that creates an empty list
-        // a method that fills an empty list
     }
-
     public class DeckBuilder 
     {
         public static List<int> deck = new List<int>();
+        /// <summary>
+        /// Creates a shuffled list of number 1 to 52(deck of 52 cards).
+        /// </summary>
+        /// <returns>A shuffled list with numbers 1 to 52</returns>
         public List<int> CreateDeck()
         {
             for(int i = 0; i<52; i++)
@@ -33,31 +31,37 @@ namespace CatchTheAce
             return deck;
         }
     }
-   
-
     public class DeckCollection : DeckBuilder
     {
-        public static List<List<int>> collection = new List<List<int>>();
+        public static List<List<int>> Collection = new List<List<int>>();
+        /// <summary>
+        /// Creates a 2D list containing multiple sets of shuffle decks.
+        /// </summary>
+        /// <param name="years">the number of shuffled decks to add to the 2D list</param>
+        /// <returns>a 2D list containing a number of deck sets determined by the years parameter.</returns>
         public List<List<int>> CreateCollection(int years)
         {
             Deck.Years = years;
             for(int i = 0; i < years; i++)
             {
-                collection.Add(CreateDeck());
+                Collection.Add(CreateDeck());
             }
-            return collection;
+            return Collection;
         }
     }
-    // a method that adds a deck to the deck collection (2d list/ 2d array)?
-    // if array, set size as number of years?
-    //make a recursive call until collection reaches max capacity?
-
     public class Results : DeckCollection
     {      
-        public static List<int> weeks = new List<int>();
+        public static List<int> Weeks = new List<int>();
+        /// <summary>
+        /// Go through a deck collection and finds the Ace of Spades and its index.
+        /// The Ace of Spades is represented by the value 52.
+        /// The index represents the week.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns>A list of week numbers that 52(Ace of Spades) was found</returns>
         public static List<int> GoThroughResults(List<List<int>> collection)
         {
-            //takes in a 2d list(collection)
+            DeckCollection.Collection = collection;
             for (int i = 0; i < collection.Count; i++)
             {
                 for (int j = 0; j < collection[i].Count; j++)
@@ -65,22 +69,19 @@ namespace CatchTheAce
                     int index = collection[i].IndexOf(52);
                     if(collection[i][j] == 52)
                     {
-                        if (index == 51)//change back to 51
+                        if (index == 51)
                         {
                             Deck.Counter++;
-                            //Console.WriteLine(index);
-                            weeks.Add(index);
+                            Weeks.Add(index);
                         }
                         else
                         {
-                            //Console.WriteLine(index);
-                            weeks.Add(index);
+                            Weeks.Add(index);
                         }
                     }
                 }
             }
-            //Console.WriteLine(Counter);
-            return weeks;
+            return Weeks;
         }
         public float PercentageCalculator(int years, int counter)
         {
@@ -89,12 +90,13 @@ namespace CatchTheAce
             return ((float)counter / (float)years) * 100;
         }
     }
-    // a method that goes through the deck collection and logs the results in a list/array?
-    // a method that calculates percentage
-    // a method that formats the results so the UI class can use them?
-
     public class UI : Results
     {
+        /// <summary>
+        /// Outputs a prompt on the console and retrieves user input.
+        /// The input represents how many years the user wants to calculate.
+        /// </summary>
+        /// <returns>an integer representing the user input</returns>
         public int GetUserInput() 
         {
             Console.WriteLine("How many years? ");
@@ -102,42 +104,32 @@ namespace CatchTheAce
             int years = int.Parse(input);
             return Deck.Years = years;
         }
+        /// <summary>
+        /// Displays the results for each year (which week the Ace of Spades was found).
+        /// After displaying each years results, the percentage of Ace of Spades found in the last week over the years is displayed.
+        /// </summary>
+        /// <param name="weeks">a list of results from each week</param>
+        /// <param name="years">used to calculate the percentage</param>
+        /// <param name="counter"></param>
+        /// <returns>a string of the results</returns>
         public string DisplayResults(List<int> weeks, int years, int counter)
         {
             Deck.Counter = counter;
             Deck.Years = years;
+            Results.Weeks = weeks;
             for (int i = 0; i < weeks.Count; i++)
             {
                 return ($"Ace of Spades found on week{weeks[i]+1}");
             }
             return ($"Ace of Spades was found on the last week {counter} times. Percentage: {((float)counter / (float)years)*100}");
         }
-
     }
-    // a method that outputs the method to get user input
-    // a method that displays the results
-
-
-    internal class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
-            List<List<int>> list = new List<List<int>>();
-            List<int> deck1 = new List<int>() { 52, 2, 8, 5 };
-            List<int> deck2 = new List<int>() { 12, 15, 52, 67 };
-            List<int> deck3 = new List<int>() { 32, 43, 50, 52 };
-            list.Add(deck1);
-            list.Add(deck2);
-            list.Add(deck3);
-            Console.WriteLine(Results.GoThroughResults(list));
-            
+           
         }
-
-         
-
-
-    
     }
-
 }
 
