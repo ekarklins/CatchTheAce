@@ -100,10 +100,24 @@ namespace CatchTheAce
         /// <returns>an integer representing the user input</returns>
         public int GetUserInput() 
         {
+            //Console.WriteLine("How many years? ");
+            //var input = Console.ReadLine();
+            //int years = int.Parse(input);
+            //return Deck.Years = years;
+
             Console.WriteLine("How many years? ");
-            var input = Console.ReadLine();
-            int years = int.Parse(input);
-            return Deck.Years = years;
+            while (true)
+            {
+                string input;
+                if((input = Console.ReadLine()) != null && int.TryParse(input, out int i) && i >= 1)
+                {
+                    return Deck.Years = i;
+                }
+            }
+
+
+
+
         }
         /// <summary>
         /// Displays the results for each year (which week the Ace of Spades was found).
