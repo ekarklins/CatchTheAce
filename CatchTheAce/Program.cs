@@ -136,11 +136,20 @@ namespace CatchTheAce
             //Deck.Counter = counter;
             //Deck.Years = years;
             //Results.Weeks = weeks;
-            for (int i = 0; i < Results.Weeks.Count; i++)
-            {
-                Console.WriteLine($"Ace of Spades found on week {Results.Weeks[i]+1}");
+            for (int i = 0; i < Results.Weeks.Count; i++) 
+            { 
+                if(Results.Weeks[i] == 51)
+                {
+                    Console.WriteLine("ACE OF SPADES FOUND IN THE LAST WEEK!", Console.ForegroundColor = ConsoleColor.Green);
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.WriteLine($"Ace of Spades found on week {Results.Weeks[i] + 1}", Console.ForegroundColor = ConsoleColor.Red);
+                    Console.ResetColor();
+                }
             }
-            Console.WriteLine($"Ace of Spades was found on the last week {Deck.Counter} times. Percentage: {((float)Deck.Counter / (float)Deck.Years)*100}%");
+            Console.WriteLine($"In {Deck.Years} years, the Ace of Spades was found on the last week {Deck.Counter} times. Percentage: {((float)Deck.Counter / (float)Deck.Years)*100}%");
         }
     }
     public class Program
@@ -154,6 +163,13 @@ namespace CatchTheAce
             UI ui = new UI();
             results.GoThroughResults(db.CreateCollection(ui.GetUserInput()));
             results.DisplayResults();
+
+            //var sampletext1 = "GREEN SAMPLE TEXT";
+            //var sampletext2 = "RED SAMPLE TEXT";
+            //Console.WriteLine(sampletext1, Console.ForegroundColor = ConsoleColor.Green);
+            //Console.WriteLine(sampletext2, Console.ForegroundColor = ConsoleColor.Red);
+
+
 
         }
     }
