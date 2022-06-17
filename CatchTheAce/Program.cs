@@ -99,6 +99,7 @@ namespace CatchTheAce
         public int GetUserInput() 
         {
             var prompt = "How many years? ";
+            Console.WriteLine("CATCH THE ACE PROGRAM");
             while (true)
             {
                 Console.WriteLine(prompt);
@@ -127,12 +128,12 @@ namespace CatchTheAce
             { 
                 if(Results.Weeks[i] == 51)
                 {
-                    Console.WriteLine("ACE OF SPADES FOUND IN THE LAST WEEK!", Console.ForegroundColor = ConsoleColor.Green);
+                    Console.WriteLine($"Year {i+1}: ACE OF SPADES FOUND IN THE LAST WEEK!", Console.ForegroundColor = ConsoleColor.Green);
                     Console.ResetColor();
                 }
                 else
                 {
-                    Console.WriteLine($"Ace of Spades found on week {Results.Weeks[i] + 1}", Console.ForegroundColor = ConsoleColor.Red);
+                    Console.WriteLine($"Year {i+1}: Ace of Spades found on week {Results.Weeks[i] + 1}", Console.ForegroundColor = ConsoleColor.Red);
                     Console.ResetColor();
                 }
             }
