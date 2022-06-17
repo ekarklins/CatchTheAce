@@ -3,21 +3,23 @@
 namespace CatchTheAce
 {
 
-    public class Deck : DeckBuilder
+    public class Deck 
     {
         public static int Years;
         public static int Counter;
+
     }
-    public class DeckBuilder 
+    public class DeckBuilder : Deck
     {
-        public static List<int> deck = new List<int>();
+        
         /// <summary>
         /// Creates a shuffled list of number 1 to 52(deck of 52 cards).
         /// </summary>
         /// <returns>A shuffled list with numbers 1 to 52</returns>
         public List<int> CreateDeck()
         {
-            for(int i = 0; i<52; i++)
+            List<int> deck = new List<int>();
+            for (int i = 0; i<52; i++)
             {
                 int random = new Random().Next(1, 53);
                 if (!deck.Contains(random))
@@ -31,10 +33,7 @@ namespace CatchTheAce
             }
             return deck;
         }
-    }
-    public class DeckCollection : DeckBuilder
-    {
-        public static List<List<int>> Collection = new List<List<int>>();
+        //public List<List<int>> Collection = new List<List<int>>();
         /// <summary>
         /// Creates a 2D list containing multiple sets of shuffle decks.
         /// </summary>
@@ -43,14 +42,23 @@ namespace CatchTheAce
         public List<List<int>> CreateCollection(int years)
         {
             Deck.Years = years;
-            for(int i = 0; i < years; i++)
+            var Collection = new List<List<int>>();
+            for (int i = 0; i < years; i++)
             {
-                Collection.Add(CreateDeck());
+                var createdeck = new DeckBuilder().CreateDeck();
+                Collection.Add(createdeck);
+                //ClearDeck();
+                //continue;
             }
             return Collection;
         }
+        public void ClearDeck()
+        {
+            
+        }
     }
-    public class Results : DeckCollection
+
+    public class Results : UI
     {      
         public static List<int> Weeks = new List<int>();
         /// <summary>
@@ -60,9 +68,9 @@ namespace CatchTheAce
         /// </summary>
         /// <param name="collection"></param>
         /// <returns>A list of week numbers that 52(Ace of Spades) was found</returns>
-        public static List<int> GoThroughResults(List<List<int>> collection)
+        public List<int> GoThroughResults(List<List<int>> collection)
         {
-            DeckCollection.Collection = collection;
+            //DeckBuilder.Collection = collection;
             for (int i = 0; i < collection.Count; i++)
             {
                 for (int j = 0; j < collection[i].Count; j++)
@@ -91,7 +99,7 @@ namespace CatchTheAce
             return ((float)counter / (float)years) * 100;
         }
     }
-    public class UI : Results
+    public class UI 
     {
         /// <summary>
         /// Outputs a prompt on the console and retrieves user input.
@@ -100,24 +108,20 @@ namespace CatchTheAce
         /// <returns>an integer representing the user input</returns>
         public int GetUserInput() 
         {
-            //Console.WriteLine("How many years? ");
-            //var input = Console.ReadLine();
-            //int years = int.Parse(input);
-            //return Deck.Years = years;
-
-            Console.WriteLine("How many years? ");
+            var prompt = "How many years? ";
             while (true)
             {
-                string input;
-                if((input = Console.ReadLine()) != null && int.TryParse(input, out int i) && i >= 1)
+                Console.WriteLine(prompt);
+                string input = "";
+                if ((input = Console.ReadLine()) == null || !int.TryParse(input, out int i) || i < 1)
                 {
-                    return Deck.Years = i;
+                    Console.WriteLine("Please enter an integer greater than 0");
+                }
+                else
+                {
+                    return Deck.Years = i;    
                 }
             }
-
-
-
-
         }
         /// <summary>
         /// Displays the results for each year (which week the Ace of Spades was found).
@@ -127,23 +131,30 @@ namespace CatchTheAce
         /// <param name="years">used to calculate the percentage</param>
         /// <param name="counter"></param>
         /// <returns>a string of the results</returns>
-        public string DisplayResults(List<int> weeks, int years, int counter)
+        public void DisplayResults() 
         {
-            Deck.Counter = counter;
-            Deck.Years = years;
-            Results.Weeks = weeks;
-            for (int i = 0; i < weeks.Count; i++)
+            //Deck.Counter = counter;
+            //Deck.Years = years;
+            //Results.Weeks = weeks;
+            for (int i = 0; i < Results.Weeks.Count; i++)
             {
-                return ($"Ace of Spades found on week{weeks[i]+1}");
+                Console.WriteLine($"Ace of Spades found on week {Results.Weeks[i]+1}");
             }
-            return ($"Ace of Spades was found on the last week {counter} times. Percentage: {((float)counter / (float)years)*100}");
+            Console.WriteLine($"Ace of Spades was found on the last week {Deck.Counter} times. Percentage: {((float)Deck.Counter / (float)Deck.Years)*100}%");
         }
     }
     public class Program
     {
         public static void Main(string[] args)
         {
-           
+
+            Deck deck = new Deck();
+            DeckBuilder db = new DeckBuilder();
+            Results results = new Results();
+            UI ui = new UI();
+            results.GoThroughResults(db.CreateCollection(ui.GetUserInput()));
+            results.DisplayResults();
+
         }
     }
 
