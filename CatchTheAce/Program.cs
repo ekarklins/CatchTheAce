@@ -1,17 +1,16 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Diagnostics;
+
 namespace CatchTheAce
 {
-
     public class Deck 
     {
         public static int Years;
         public static int Counter;
-
     }
     public class DeckBuilder : Deck
     {
-        
         /// <summary>
         /// Creates a shuffled list of number 1 to 52(deck of 52 cards).
         /// </summary>
@@ -33,7 +32,6 @@ namespace CatchTheAce
             }
             return deck;
         }
-        //public List<List<int>> Collection = new List<List<int>>();
         /// <summary>
         /// Creates a 2D list containing multiple sets of shuffle decks.
         /// </summary>
@@ -47,17 +45,10 @@ namespace CatchTheAce
             {
                 var createdeck = new DeckBuilder().CreateDeck();
                 Collection.Add(createdeck);
-                //ClearDeck();
-                //continue;
             }
             return Collection;
         }
-        public void ClearDeck()
-        {
-            
-        }
     }
-
     public class Results : UI
     {      
         public static List<int> Weeks = new List<int>();
@@ -70,7 +61,6 @@ namespace CatchTheAce
         /// <returns>A list of week numbers that 52(Ace of Spades) was found</returns>
         public List<int> GoThroughResults(List<List<int>> collection)
         {
-            //DeckBuilder.Collection = collection;
             for (int i = 0; i < collection.Count; i++)
             {
                 for (int j = 0; j < collection[i].Count; j++)
@@ -133,9 +123,6 @@ namespace CatchTheAce
         /// <returns>a string of the results</returns>
         public void DisplayResults() 
         {
-            //Deck.Counter = counter;
-            //Deck.Years = years;
-            //Results.Weeks = weeks;
             for (int i = 0; i < Results.Weeks.Count; i++) 
             { 
                 if(Results.Weeks[i] == 51)
@@ -156,6 +143,8 @@ namespace CatchTheAce
     {
         public static void Main(string[] args)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
             Deck deck = new Deck();
             DeckBuilder deckbuilder = new DeckBuilder();
@@ -163,16 +152,9 @@ namespace CatchTheAce
             UI ui = new UI();
             results.GoThroughResults(deckbuilder.CreateCollection(ui.GetUserInput()));
             results.DisplayResults();
-
-            //var sampletext1 = "GREEN SAMPLE TEXT";
-            //var sampletext2 = "RED SAMPLE TEXT";
-            //Console.WriteLine(sampletext1, Console.ForegroundColor = ConsoleColor.Green);
-            //Console.WriteLine(sampletext2, Console.ForegroundColor = ConsoleColor.Red);
-
-
-
+            stopwatch.Stop();
+            Console.WriteLine($"Execution Time: {stopwatch.ElapsedMilliseconds}ms");
         }
     }
-
 }
 
