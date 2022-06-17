@@ -158,10 +158,10 @@ namespace CatchTheAce
         {
 
             Deck deck = new Deck();
-            DeckBuilder db = new DeckBuilder();
+            DeckBuilder deckbuilder = new DeckBuilder();
             Results results = new Results();
             UI ui = new UI();
-            results.GoThroughResults(db.CreateCollection(ui.GetUserInput()));
+            results.GoThroughResults(deckbuilder.CreateCollection(ui.GetUserInput()));
             results.DisplayResults();
 
             //var sampletext1 = "GREEN SAMPLE TEXT";
