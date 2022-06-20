@@ -53,9 +53,10 @@ namespace CatchTheAce
     {      
         public static List<int> Weeks = new List<int>();
         /// <summary>
-        /// Go through a deck collection and finds the Ace of Spades and its index.
+        /// Goes through a deck collection and finds the Ace of Spades and its index.
         /// The Ace of Spades is represented by the value 52.
-        /// The index represents the week.
+        /// The index variable represents the week.
+        /// Adds the indexes to a new list that is used to display results.
         /// </summary>
         /// <param name="collection"></param>
         /// <returns>A list of week numbers that 52(Ace of Spades) was found</returns>
@@ -82,12 +83,6 @@ namespace CatchTheAce
             }
             return Weeks;
         }
-        public float PercentageCalculator(int years, int counter)
-        {
-            Deck.Counter = counter;
-            Deck.Years = years;
-            return ((float)counter / (float)years) * 100;
-        }
     }
     public class UI 
     {
@@ -95,7 +90,7 @@ namespace CatchTheAce
         /// Outputs a prompt on the console and retrieves user input.
         /// The input represents how many years the user wants to calculate.
         /// </summary>
-        /// <returns>an integer representing the user input</returns>
+        /// <returns>an integer representing the user input for the number of years</returns>
         public int GetUserInput() 
         {
             var prompt = "How many years? ";
@@ -121,7 +116,7 @@ namespace CatchTheAce
         /// <param name="weeks">a list of results from each week</param>
         /// <param name="years">used to calculate the percentage</param>
         /// <param name="counter"></param>
-        /// <returns>a string of the results</returns>
+        /// <returns>Outputs the results on the console</returns>
         public void DisplayResults() 
         {
             for (int i = 0; i < Results.Weeks.Count; i++) 
@@ -133,7 +128,7 @@ namespace CatchTheAce
                 }
                 else
                 {
-                    Console.WriteLine($"Year {i+1}: Ace of Spades found on week {Results.Weeks[i] + 1}", Console.ForegroundColor = ConsoleColor.Red);
+                    Console.WriteLine($"Year {i+1}: Ace of Spades found on Week: {Results.Weeks[i] + 1}", Console.ForegroundColor = ConsoleColor.Red);
                     Console.ResetColor();
                 }
             }
