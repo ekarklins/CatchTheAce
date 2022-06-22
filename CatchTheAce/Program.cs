@@ -6,32 +6,26 @@ namespace CatchTheAce
 {
     public static class Deck 
     {
-        public const int numOfCards = 52;
+        public const int NumOfCards = 52;
         public static int Years;
         public static int Counter;
     }
     public class DeckBuilder 
     {
-        /// <summary>
-        /// Creates a shuffled list of number 1 to 52(deck of 52 cards).
-        /// </summary>
-        /// <returns>A shuffled list with numbers 1 to 52</returns>
-        public List<int> CreateDeck()
+
+        public List<int> CreateShuffledDeck()
         {
             List<int> deck = new List<int>();
-            for (int i = 0; i<52; i++)
+            for (int i = 0; i < 52; i++)
             {
-                int random = new Random().Next(1, 53);
-                if (!deck.Contains(random))
-                {
-                    deck.Add(random);
-                }
-                else
-                {
-                    i--;
-                }
+                deck.Add(i + 1);
             }
-            return deck;
+
+            var rndm = new Random();
+            var randomized = deck.OrderBy(item => rndm.Next());
+            return randomized.ToList();
+
+
         }
         /// <summary>
         /// Creates a 2D list containing multiple sets of shuffle decks.
@@ -41,13 +35,13 @@ namespace CatchTheAce
         public List<List<int>> CreateCollection(int years)
         {
             Deck.Years = years;
-            var Collection = new List<List<int>>();
+            var collection = new List<List<int>>();
             for (int i = 0; i < years; i++)
             {
-                var createdeck = new DeckBuilder().CreateDeck();
-                Collection.Add(createdeck);
+                var createdeck = new DeckBuilder().CreateShuffledDeck();
+                collection.Add(createdeck);
             }
-            return Collection;
+            return collection;
         }
     }
     public class Results : UI
@@ -63,11 +57,11 @@ namespace CatchTheAce
         /// <returns>A list of week numbers that 52(Ace of Spades) was found</returns>
         public List<int> GoThroughResults(List<List<int>> collection)
         {
-            for (int i = 0; i < collection.Count; i++)
+            for (var i = 0; i < collection.Count; i++)
             {
-                for (int j = 0; j < collection[i].Count; j++)
+                for (var j = 0; j < collection[i].Count; j++)
                 {
-                    int index = collection[i].IndexOf(52);
+                    var index = collection[i].IndexOf(52);
                     if(collection[i][j] == 52)
                     {
                         if (index == 51)
@@ -99,7 +93,7 @@ namespace CatchTheAce
             while (true)
             {
                 Console.WriteLine(prompt);
-                string input = "";
+                string? input;
                 if ((input = Console.ReadLine()) == null || !int.TryParse(input, out int i) || i < 1)
                 {
                     Console.WriteLine("\nPlease enter an integer greater than 0 \n", Console.ForegroundColor = ConsoleColor.DarkYellow);
@@ -111,13 +105,11 @@ namespace CatchTheAce
                 }
             }
         }
+
         /// <summary>
         /// Displays the results for each year (which week the Ace of Spades was found).
         /// After displaying each years results, the percentage of Ace of Spades found in the last week over the years is displayed.
         /// </summary>
-        /// <param name="weeks">a list of results from each week</param>
-        /// <param name="years">used to calculate the percentage</param>
-        /// <param name="counter"></param>
         /// <returns>Outputs the results on the console</returns>
         public void DisplayResults() 
         {
@@ -134,7 +126,7 @@ namespace CatchTheAce
                     Console.ResetColor();
                 }
             }
-            Console.WriteLine($"In {Deck.Years} years, the Ace of Spades was found on the last week {Deck.Counter} times. Percentage: {((float)Deck.Counter / (float)Deck.Years)*100}%");
+            Console.WriteLine($"\nIn {Deck.Years} years, the Ace of Spades was found on the last week {Deck.Counter} times. Percentage: {((float)Deck.Counter / (float)Deck.Years)*100}%");
         }
     }
     public class Program
