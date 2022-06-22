@@ -4,12 +4,13 @@ using System.Diagnostics;
 
 namespace CatchTheAce
 {
-    public class Deck 
+    public static class Deck 
     {
+        public const int numOfCards = 52;
         public static int Years;
         public static int Counter;
     }
-    public class DeckBuilder : Deck
+    public class DeckBuilder 
     {
         /// <summary>
         /// Creates a shuffled list of number 1 to 52(deck of 52 cards).
@@ -93,7 +94,7 @@ namespace CatchTheAce
         /// <returns>an integer representing the user input for the number of years</returns>
         public int GetUserInput() 
         {
-            var prompt = "How many years? ";
+            var prompt = "How many years would you like to simulate? ";
             Console.WriteLine("CATCH THE ACE PROGRAM");
             while (true)
             {
@@ -101,7 +102,8 @@ namespace CatchTheAce
                 string input = "";
                 if ((input = Console.ReadLine()) == null || !int.TryParse(input, out int i) || i < 1)
                 {
-                    Console.WriteLine("Please enter an integer greater than 0");
+                    Console.WriteLine("\nPlease enter an integer greater than 0 \n", Console.ForegroundColor = ConsoleColor.DarkYellow);
+                    Console.ResetColor();
                 }
                 else
                 {
@@ -128,7 +130,7 @@ namespace CatchTheAce
                 }
                 else
                 {
-                    Console.WriteLine($"Year {i+1}: Ace of Spades found on Week: {Results.Weeks[i] + 1}", Console.ForegroundColor = ConsoleColor.Red);
+                    Console.WriteLine($"Year {i+1}: Ace of Spades found on Week: {Results.Weeks[i] + 1}", Console.ForegroundColor = ConsoleColor.DarkCyan);
                     Console.ResetColor();
                 }
             }
@@ -142,7 +144,7 @@ namespace CatchTheAce
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Deck deck = new Deck();
+            
             DeckBuilder deckbuilder = new DeckBuilder();
             Results results = new Results();
             UI ui = new UI();
