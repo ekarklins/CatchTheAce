@@ -31,11 +31,13 @@ public class UI
         do
         {
             Console.WriteLine(prompt);
-            check = (int.TryParse(Console.ReadLine(), out years) || years > 0);
+            check = int.TryParse(Console.ReadLine(), out years);
+            check = check && years > 0;
 
-            if (check == false)
+            if (years<1)
             {
                 Console.WriteLine("Please enter an integer greater than 0");
+                
             }
         }
         while (!check);
