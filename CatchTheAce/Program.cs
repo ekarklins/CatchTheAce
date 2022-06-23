@@ -4,16 +4,16 @@ using System.Diagnostics;
 
 namespace CatchTheAce
 {
-    public static class Deck 
+    public static class Deck
     {
         public const int NumOfCards = 52;
         public static int Years;
         public static int Counter;
     }
-    public class DeckBuilder 
-    {
 
-        public List<int> CreateShuffledDeck()
+    public class DeckBuilder
+    {
+        private List<int> CreateShuffledDeck()
         {
             List<int> deck = new List<int>();
             for (int i = 0; i < 52; i++)
@@ -22,16 +22,17 @@ namespace CatchTheAce
             }
 
             var rndm = new Random();
-            var randomized = deck.OrderBy(item => rndm.Next());
+            var randomized = deck.OrderBy(_ => rndm.Next());
             return randomized.ToList();
-
-
         }
+
         /// <summary>
         /// Creates a 2D list containing multiple sets of shuffle decks.
         /// </summary>
         /// <param name="years">the number of shuffled decks to add to the 2D list</param>
         /// <returns>a 2D list containing a number of deck sets determined by the years parameter.</returns>
+
+        public int years;
         public List<List<int>> CreateCollection(int years)
         {
             Deck.Years = years;
@@ -44,9 +45,11 @@ namespace CatchTheAce
             return collection;
         }
     }
-    public class Results : UI
-    {      
-        public static List<int> Weeks = new List<int>();
+
+    public class Results
+    {
+        public static List<int> weeks = new List<int>();
+
         /// <summary>
         /// Goes through a deck collection and finds the Ace of Spades and its index.
         /// The Ace of Spades is represented by the value 52.
@@ -62,31 +65,32 @@ namespace CatchTheAce
                 for (var j = 0; j < collection[i].Count; j++)
                 {
                     var index = collection[i].IndexOf(52);
-                    if(collection[i][j] == 52)
+                    if (collection[i][j] == 52)
                     {
                         if (index == 51)
                         {
                             Deck.Counter++;
-                            Weeks.Add(index);
+                            weeks.Add(index);
                         }
                         else
                         {
-                            Weeks.Add(index);
+                            weeks.Add(index);
                         }
                     }
                 }
             }
-            return Weeks;
+            return weeks;
         }
     }
-    public class UI 
+
+    public class UI
     {
         /// <summary>
         /// Outputs a prompt on the console and retrieves user input.
         /// The input represents how many years the user wants to calculate.
         /// </summary>
         /// <returns>an integer representing the user input for the number of years</returns>
-        public int GetUserInput() 
+        public int GetUserInput()
         {
             var prompt = "How many years would you like to simulate? ";
             Console.WriteLine("CATCH THE ACE PROGRAM");
@@ -101,9 +105,12 @@ namespace CatchTheAce
                 }
                 else
                 {
-                    return Deck.Years = i;    
+                    return Deck.Years = i;
                 }
             }
+
+
+
         }
 
         /// <summary>
@@ -111,24 +118,25 @@ namespace CatchTheAce
         /// After displaying each years results, the percentage of Ace of Spades found in the last week over the years is displayed.
         /// </summary>
         /// <returns>Outputs the results on the console</returns>
-        public void DisplayResults() 
+        public void DisplayResults()
         {
-            for (int i = 0; i < Results.Weeks.Count; i++) 
-            { 
-                if(Results.Weeks[i] == 51)
+            for (int i = 0; i < Results.weeks.Count; i++)
+            {
+                if (Results.weeks[i] == 51)
                 {
-                    Console.WriteLine($"Year {i+1}: ACE OF SPADES FOUND IN THE LAST WEEK!", Console.ForegroundColor = ConsoleColor.Green);
+                    Console.WriteLine($"Year {i + 1}: ACE OF SPADES FOUND IN THE LAST WEEK!", Console.ForegroundColor = ConsoleColor.Green);
                     Console.ResetColor();
                 }
                 else
                 {
-                    Console.WriteLine($"Year {i+1}: Ace of Spades found on Week: {Results.Weeks[i] + 1}", Console.ForegroundColor = ConsoleColor.DarkCyan);
+                    Console.WriteLine($"Year {i + 1}: Ace of Spades found on Week: {Results.weeks[i] + 1}", Console.ForegroundColor = ConsoleColor.DarkCyan);
                     Console.ResetColor();
                 }
             }
-            Console.WriteLine($"\nIn {Deck.Years} years, the Ace of Spades was found on the last week {Deck.Counter} times. Percentage: {((float)Deck.Counter / (float)Deck.Years)*100}%");
+            Console.WriteLine($"\nIn {Deck.Years} years, the Ace of Spades was found on the last week {Deck.Counter} times. Percentage: {((float)Deck.Counter / (float)Deck.Years) * 100}%");
         }
     }
+
     public class Program
     {
         public static void Main(string[] args)
@@ -136,15 +144,14 @@ namespace CatchTheAce
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            
             DeckBuilder deckbuilder = new DeckBuilder();
             Results results = new Results();
             UI ui = new UI();
             results.GoThroughResults(deckbuilder.CreateCollection(ui.GetUserInput()));
-            results.DisplayResults();
+            //results.DisplayResults();
+            ui.DisplayResults();
             stopwatch.Stop();
             Console.WriteLine($"Execution Time: {stopwatch.ElapsedMilliseconds}ms");
         }
     }
 }
-
