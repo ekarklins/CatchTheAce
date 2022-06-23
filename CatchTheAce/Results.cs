@@ -22,7 +22,7 @@ public class Results : UI
                 {
                     if (index == 51)
                     {
-                        Counter++;
+                        Program.AceInTheLastWeekCount++;
                         weeks.Add(index);
                     }
                     else

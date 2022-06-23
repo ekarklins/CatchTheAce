@@ -25,7 +25,7 @@ public class DeckBuilder
     /// <returns>a 2D list containing a number of deck sets determined by the years parameter.</returns>
     public List<List<int>> CreateCollection(int years)
     {
-        Deck.Years = years;
+        Program.Years = years;
         var collection = new List<List<int>>();
         for (int i = 0; i < years; i++)
         {

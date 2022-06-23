@@ -7,12 +7,13 @@ namespace CatchTheAce
     public class Deck 
     {
         public const int NumOfCards = 52;
-        public static int Years;
-        protected static int Counter;
     }
 
     public static class Program
     {
+        public static int Years;
+        public static int AceInTheLastWeekCount;
+
         public static void Main(string[] args)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -26,6 +27,9 @@ namespace CatchTheAce
             results.DisplayResults();
             stopwatch.Stop();
             Console.WriteLine($"Execution Time: {stopwatch.ElapsedMilliseconds}ms");
+
+
+
         }
     }
 }
