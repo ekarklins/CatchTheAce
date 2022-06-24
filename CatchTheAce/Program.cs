@@ -4,22 +4,24 @@ using System.Diagnostics;
 
 namespace CatchTheAce
 {
+
     public class Deck 
     {
         public const int NumOfCards = 52;
     }
+
 
     public static class Program
     {
         public static int YearsToSimulate;
         public static int AceInTheLastWeekCount;
 
+
         public static void Main(string[] args)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            
             DeckBuilder deckbuilder = new DeckBuilder();
             Results results = new Results();
             UI ui = new UI();
@@ -33,4 +35,3 @@ namespace CatchTheAce
         }
     }
 }
-
