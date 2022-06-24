@@ -5,8 +5,6 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatchTheAce", "CatchTheAce\CatchTheAce.csproj", "{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchTheAce_UnitTests", "CatchTheAce_UnitTests\CatchTheAce_UnitTests.csproj", "{EE8069FD-8886-441A-B3B2-20A225437F50}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE8069FD-8886-441A-B3B2-20A225437F50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE8069FD-8886-441A-B3B2-20A225437F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE8069FD-8886-441A-B3B2-20A225437F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE8069FD-8886-441A-B3B2-20A225437F50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

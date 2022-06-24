@@ -4,34 +4,26 @@ using System.Diagnostics;
 
 namespace CatchTheAce
 {
-
-    public class Deck 
-    {
-        public const int NumOfCards = 52;
-    }
-
-
     public static class Program
     {
-        public static int YearsToSimulate;
-        public static int AceInTheLastWeekCount;
-
-
         public static void Main(string[] args)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            DeckBuilder deckbuilder = new DeckBuilder();
+            DeckBuilder deckBuilder = new DeckBuilder();
             Results results = new Results();
             UI ui = new UI();
-            results.GoThroughResults(deckbuilder.CreateCollection(ui.GetUserInput()));
-            results.DisplayResults();
+
+            var yearsToSim = ui.GetUserInput();
+            var decksByYear = deckBuilder.InitializeDeck(yearsToSim);
+            deckBuilder.ShufflesAllDecks(decksByYear);
+
+            var (aceInTheLastWeekCount, weeksWhereAceWasFound) = results.GoThroughResults(decksByYear);
+            ui.DisplayResults(yearsToSim, aceInTheLastWeekCount, weeksWhereAceWasFound);
+
             stopwatch.Stop();
             Console.WriteLine($"Execution Time: {stopwatch.ElapsedMilliseconds}ms");
-
-
-
         }
     }
 }

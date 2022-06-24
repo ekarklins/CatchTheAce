@@ -1,32 +1,37 @@
 ﻿namespace CatchTheAce;
 
-public class DeckBuilder 
+public class DeckBuilder
 {
-
-    public List<int> CreateShuffledDeck()
+    public void ShufflesAllDecks(List<List<int>> decksByYear)
     {
-        List<int> deck = new List<int>();
-        for (int i = 0; i < Deck.NumOfCards; i++)
+        for (var index = 0; index < decksByYear.Count; index++)
         {
-            deck.Add(i + 1);
+            var currentDeck = decksByYear[index];
+            decksByYear[index] = this.ShuffleDeck(currentDeck);
         }
-
-        var random = new Random();
-        var randomized = deck.OrderBy(_ => random.Next());
-        return randomized.ToList();
-
-
     }
 
-    public List<List<int>> CreateCollection(int yearsToSim)
+    public List<int> ShuffleDeck(List<int> deck)
     {
-        Program.YearsToSimulate = yearsToSim;
-        var collectionOfShuffledDecks = new List<List<int>>();
-        for (int i = 0; i < yearsToSim; i++)
+        var random = new Random();
+        var randomizedDeck = deck.OrderBy(_ => random.Next());
+        return randomizedDeck.ToList();
+    }
+
+    public List<List<int>> InitializeDeck(int yearsToSimulate)
+    {
+        var decksForYears = new List<List<int>>();
+        for (int year = 0; year < yearsToSimulate; year++)
         {
-            var shuffledDeck = new DeckBuilder().CreateShuffledDeck();
-            collectionOfShuffledDecks.Add(shuffledDeck);
+            var deck = new List<int>();
+            for (int cardNum = 1; cardNum <= DeckConstants.CardsInDeck; cardNum++)
+            {
+                deck.Add(cardNum);
+            }
+
+            decksForYears.Add(deck);
         }
-        return collectionOfShuffledDecks;
+
+        return decksForYears;
     }
 }
