@@ -11,7 +11,7 @@ namespace CatchTheAce
 
     public static class Program
     {
-        public static int Years;
+        public static int YearsToSimulate;
         public static int AceInTheLastWeekCount;
 
         public static void Main(string[] args)

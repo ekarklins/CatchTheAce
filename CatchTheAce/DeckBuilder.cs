@@ -3,7 +3,6 @@
 public class DeckBuilder 
 {
 
-
     public List<int> CreateShuffledDeck()
     {
         List<int> deck = new List<int>();
@@ -12,26 +11,22 @@ public class DeckBuilder
             deck.Add(i + 1);
         }
 
-        var rndm = new Random();
-        var randomized = deck.OrderBy(_ => rndm.Next());
+        var random = new Random();
+        var randomized = deck.OrderBy(_ => random.Next());
         return randomized.ToList();
 
 
     }
-    /// <summary>
-    /// Creates a 2D list containing multiple sets of shuffle decks.
-    /// </summary>
-    /// <param name="years">the number of shuffled decks to add to the 2D list</param>
-    /// <returns>a 2D list containing a number of deck sets determined by the years parameter.</returns>
-    public List<List<int>> CreateCollection(int years)
+
+    public List<List<int>> CreateCollection(int yearsToSim)
     {
-        Program.Years = years;
-        var collection = new List<List<int>>();
-        for (int i = 0; i < years; i++)
+        Program.YearsToSimulate = yearsToSim;
+        var collectionOfShuffledDecks = new List<List<int>>();
+        for (int i = 0; i < yearsToSim; i++)
         {
-            var createdeck = new DeckBuilder().CreateShuffledDeck();
-            collection.Add(createdeck);
+            var shuffledDeck = new DeckBuilder().CreateShuffledDeck();
+            collectionOfShuffledDecks.Add(shuffledDeck);
         }
-        return collection;
+        return collectionOfShuffledDecks;
     }
 }
