@@ -5,6 +5,12 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatchTheAce", "CatchTheAce\CatchTheAce.csproj", "{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{550D315D-01F4-477A-9F0A-2B4D5835CD35}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{25801860-7BA4-4182-B458-CCFE1D39CA38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchTheAceTests", "CatchTheAceTests\CatchTheAceTests.csproj", "{8C67401C-9376-4B08-89EB-A43D7161695B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C67401C-9376-4B08-89EB-A43D7161695B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C67401C-9376-4B08-89EB-A43D7161695B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C67401C-9376-4B08-89EB-A43D7161695B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C67401C-9376-4B08-89EB-A43D7161695B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B7F2987-4827-4C09-9E83-90DD4D66B3A7} = {25801860-7BA4-4182-B458-CCFE1D39CA38}
+		{8C67401C-9376-4B08-89EB-A43D7161695B} = {550D315D-01F4-477A-9F0A-2B4D5835CD35}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {73376CDB-95AD-4B91-B70B-5949050E9C35}
