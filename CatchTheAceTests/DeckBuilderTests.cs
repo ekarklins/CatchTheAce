@@ -21,9 +21,16 @@ namespace CatchTheAceTests
 
 
         [Fact]
-        public void ShufflesAllDecks_InvalidDeckCollection_ReturnsSomething()
+        public void ShufflesAllDecks_DeckCollection_ShuffledDecksWithinDeckCollection()
         {
             var deckBuilder = new DeckBuilder();
+            var orderedDeck = deckBuilder.InitializeDeck(3);
+            var anotherOrderedDeck = deckBuilder.InitializeDeck(3);
+            var testdeck = deckBuilder.InitializeDeck(3);
+            deckBuilder.ShufflesAllDecks(testdeck);
+            Assert.True(orderedDeck != testdeck);
+            Assert.Equal(orderedDeck, anotherOrderedDeck);
+
         }
 
 
@@ -39,13 +46,6 @@ namespace CatchTheAceTests
             Assert.NotEqual(orderedDeck[0], shuffleDeck);
         }
 
-        [Fact]
-        public void ShuffleDeck_InvalidCardDeckSize_ThrowsException() 
-        {
-            //returns something if the deck size is not 52?
-            //throws an exception?
-
-        }
 
         [Fact]
         public void InitializeDeck_OneYear_ReturnsOneDeckWith52CardsWithinADeck()
