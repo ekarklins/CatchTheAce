@@ -12,13 +12,6 @@ namespace CatchTheAceTests
             _testOutputHelper = testOutputHelper;
         }
 
-        [Fact]
-        public void ShufflesAllDecks_ValidDeckCollection_ShuffledDeckCollection()
-        {
-            //checks to see if all decks are shuffled in the deck collection
-            //use assert.notequal to check that the decks have been shuffle
-        }
-
 
         [Fact]
         public void ShufflesAllDecks_DeckCollection_ShuffledDecksWithinDeckCollection()
