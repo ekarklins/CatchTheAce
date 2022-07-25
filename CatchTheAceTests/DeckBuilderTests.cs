@@ -31,6 +31,12 @@ namespace CatchTheAceTests
         public void ShuffleDeck_ValidCardDeck_ValidShuffledDeck()
         {
             //checks if a deck of 52 cards is shuffled
+            var deckBuilder = new DeckBuilder();
+            var orderedDeck = deckBuilder.InitializeDeck(1);
+            var testDeck = deckBuilder.InitializeDeck(1);
+            var shuffleDeck = deckBuilder.ShuffleDeck(testDeck[0]);
+            Assert.Equal(orderedDeck, testDeck);
+            Assert.NotEqual(orderedDeck[0], shuffleDeck);
         }
 
         [Fact]
@@ -38,9 +44,7 @@ namespace CatchTheAceTests
         {
             //returns something if the deck size is not 52?
             //throws an exception?
-            var deckBuilder = new DeckBuilder();
-            var orderedDeck = deckBuilder.InitializeDeck(1);
-            var testDeck = deckBuilder.InitializeDeck(1);
+
         }
 
         [Fact]

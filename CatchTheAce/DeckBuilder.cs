@@ -11,7 +11,7 @@ public class DeckBuilder
         }
     }
 
-    public List<int> ShuffleDeck(this List<int> deck)
+    public List<int> ShuffleDeck(List<int> deck)
     {
         var random = new Random();
         var randomizedDeck = deck.OrderBy(_ => random.Next());
