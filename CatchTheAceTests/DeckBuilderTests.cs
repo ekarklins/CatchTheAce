@@ -1,3 +1,4 @@
+using CatchTheAce;
 using Xunit.Abstractions;
 
 namespace CatchTheAceTests
@@ -22,7 +23,7 @@ namespace CatchTheAceTests
         [Fact]
         public void ShufflesAllDecks_InvalidDeckCollection_ReturnsSomething()
         {
-            
+            var deckBuilder = new DeckBuilder();
         }
 
 
@@ -33,22 +34,31 @@ namespace CatchTheAceTests
         }
 
         [Fact]
-        public void ShuffleDeck_InvalidCardDeckSize_ThrowsException()
+        public void ShuffleDeck_InvalidCardDeckSize_ThrowsException() 
         {
             //returns something if the deck size is not 52?
             //throws an exception?
+            var deckBuilder = new DeckBuilder();
+            var orderedDeck = deckBuilder.InitializeDeck(1);
+            var testDeck = deckBuilder.InitializeDeck(1);
         }
 
         [Fact]
-        public void InitializeDeck_Something_Something()
+        public void InitializeDeck_OneYear_ReturnsOneDeckWith52CardsWithinADeck()
         {
             //Checks if the deck length is 52
+            var deckBuilder = new DeckBuilder();
+            var result = deckBuilder.InitializeDeck(1);
+            var expected = 52;
+            Assert.Equal(expected, result[0].Count);
+
         }
 
         [Fact]
-        public void InitializeDeck_Something1_Something()
+        public void InitializeDeck_s_Something()
         {
             //Checks if there is no repeating numbers
+            //Is this test needed?
         }
 
     }
