@@ -3,7 +3,6 @@ using Xunit.Abstractions;
 
 namespace CatchTheAceTests
 {
-
     public class UITests
     {
         private ITestOutputHelper _testOutputHelper;
@@ -12,6 +11,8 @@ namespace CatchTheAceTests
         {
             _testOutputHelper = testOutputHelper;
         }
+
+
 
         [Theory]
         [InlineData("20", 20)]
@@ -28,10 +29,9 @@ namespace CatchTheAceTests
                 _testOutputHelper.WriteLine(actual.ToString());
 
                 Assert.Equal(expected, actual);
-
             }
-
         }
+
         [Theory]
         [InlineData("two")]
         [InlineData("-1")]
@@ -43,19 +43,33 @@ namespace CatchTheAceTests
             //    Console.SetIn(reader);
             //    Console.SetOut(writer);
 
-            //    var ui = new UI();
-            //    _ = ui.GetUserInput();
-            //    var actualMessage = writer.ToString();
-            //    _testOutputHelper.WriteLine(actualMessage);
+            // var ui = new UI(); _ = ui.GetUserInput(); var actualMessage = writer.ToString(); _testOutputHelper.WriteLine(actualMessage);
 
             //    var expected = "\nPlease enter an integer greater than 0 \n";
-
-
 
             //    Assert.Equal(expected, actualMessage);
             //}
         }
 
+
+        [Fact]
+        public void DisplayResults_ValidData_ValidOutput()
+        {
+            var content = new System.Text.StringBuilder();
+            var writer = new StringWriter(content);
+            Console.SetOut(writer);
+            var yearsToSimulate = 5;
+            var aceInTheLastWeekCount = 2;
+            var weeksWithFoundAce = new List<int> { 3, 4, 7, 2, 8 };
+
+            var ui = new UI();
+            ui.DisplayResults(yearsToSimulate, aceInTheLastWeekCount, weeksWithFoundAce);
+            var actualOutput = writer.ToString();
+
+            _testOutputHelper.WriteLine(actualOutput);
+
+
+        }
 
     }
 }
