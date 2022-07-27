@@ -63,13 +63,18 @@ namespace CatchTheAceTests
       
         public void DisplayResults_ValidData_ValidOutput(int yearsToSimulate, int aceInTheLastWeekCount, List<int> weeksWithFoundAce)
         {
-            
-            //var yearsToSimulate = 5;
-            //var aceInTheLastWeekCount = 2;
-            //var weeksWithFoundAce = new List<int> { 3, 4, 7, 2, 8 };
+
+            using var writer = new StringWriter();
+
+            Console.SetOut(writer);
 
             var ui = new UI();
             ui.DisplayResults(yearsToSimulate, aceInTheLastWeekCount, weeksWithFoundAce);
+            var result = writer.ToString();
+            _testOutputHelper.WriteLine(result);
+            _testOutputHelper.WriteLine($"Expected Years: {yearsToSimulate}");
+            _testOutputHelper.WriteLine($"Expected Ace in the last week count: {aceInTheLastWeekCount}");
+
 
 
 
@@ -80,7 +85,8 @@ namespace CatchTheAceTests
     {
         private readonly List<object[]> _data = new List<object[]>
         {
-            new object[] { 5, 2, new List<int> { 3, 4, 7, 2, 8 } }
+            new object[] { 5, 2, new List<int> { 3, 51, 7, 2, 51 } },
+            new object[] { 10, 1, new List<int> { 30, 4, 51, 19, 23, 6, 42, 10, 35, 48} }
         };
 
         public IEnumerator<object[]> GetEnumerator()

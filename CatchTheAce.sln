@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{550D315D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{25801860-7BA4-4182-B458-CCFE1D39CA38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchTheAceTests", "CatchTheAceTests\CatchTheAceTests.csproj", "{8C67401C-9376-4B08-89EB-A43D7161695B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatchTheAce.UnitTest", "CatchTheAceTests\CatchTheAce.UnitTest.csproj", "{8C67401C-9376-4B08-89EB-A43D7161695B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
