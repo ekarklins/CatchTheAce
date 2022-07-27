@@ -14,8 +14,6 @@ namespace CatchTheAceTests
             _testOutputHelper = testOutputHelper;
         }
 
-
-
         [Theory]
         [InlineData("20", 20)]
         [InlineData(" 23", 23)]
@@ -23,12 +21,16 @@ namespace CatchTheAceTests
         public void GetUserInput_ValidUserInput_ValidIntReturned(string userinput, int expected)
         {
             using var reader = new StringReader(userinput);
+            using var writer = new StringWriter();
 
             Console.SetIn(reader);
+            Console.SetOut(writer);
+
             var ui = new UI();
             var actual = ui.GetUserInput();
 
-            _testOutputHelper.WriteLine(actual.ToString());
+            _testOutputHelper.WriteLine("Actual: " + actual.ToString());
+            _testOutputHelper.WriteLine("Expected: " + expected);
 
             Assert.Equal(expected, actual);
         }
@@ -74,10 +76,6 @@ namespace CatchTheAceTests
             _testOutputHelper.WriteLine(result);
             _testOutputHelper.WriteLine($"Expected Years: {yearsToSimulate}");
             _testOutputHelper.WriteLine($"Expected Ace in the last week count: {aceInTheLastWeekCount}");
-
-
-
-
         }
     }
 
