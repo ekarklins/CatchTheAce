@@ -12,51 +12,57 @@ namespace CatchTheAceTests
             _testOutputHelper = testOutputHelper;
         }
 
-
         [Fact]
-        public void ShufflesAllDecks_DeckCollection_ShuffledDecksWithinDeckCollection()
+        public void InitializeDeck_OneYear_ReturnsOneDeckWith52CardsWithinADeck()
         {
             var deckBuilder = new DeckBuilder();
-            var orderedDeck = deckBuilder.InitializeDeck(3);
-            var anotherOrderedDeck = deckBuilder.InitializeDeck(3);
-            var testdeck = deckBuilder.InitializeDeck(3);
-            deckBuilder.ShufflesAllDecks(testdeck);
-            Assert.True(orderedDeck != testdeck);
-            Assert.Equal(orderedDeck, anotherOrderedDeck);
+            var resultDeck = deckBuilder.InitializeDeck(1).First();
+            var expected = DeckConstants.CardsInDeck;
 
+            Assert.Equal(expected, resultDeck.Count);
+
+            var counter = 1;
+            resultDeck.ForEach(card =>
+            {
+                Assert.Equal(counter, card);
+                counter++;
+            });
+
+            _testOutputHelper.WriteLine(string.Join(",", resultDeck));
         }
-
 
         [Fact]
         public void ShuffleDeck_ValidCardDeck_ValidShuffledDeck()
         {
-            //checks if a deck of 52 cards is shuffled
             var deckBuilder = new DeckBuilder();
-            var orderedDeck = deckBuilder.InitializeDeck(1);
-            var testDeck = deckBuilder.InitializeDeck(1);
-            var shuffleDeck = deckBuilder.ShuffleDeck(testDeck[0]);
-            Assert.Equal(orderedDeck, testDeck);
-            Assert.NotEqual(orderedDeck[0], shuffleDeck);
-        }
+            var resultDeck = deckBuilder.InitializeDeck(1).First();
+            var resultDeckShuffled = deckBuilder.ShuffleDeck(resultDeck);
 
+            Assert.Equal(DeckConstants.CardsInDeck, resultDeckShuffled.Count);
 
-        [Fact]
-        public void InitializeDeck_OneYear_ReturnsOneDeckWith52CardsWithinADeck()
-        {
-            //Checks if the deck length is 52
-            var deckBuilder = new DeckBuilder();
-            var result = deckBuilder.InitializeDeck(1);
-            var expected = 52;
-            Assert.Equal(expected, result[0].Count);
+            _testOutputHelper.WriteLine(string.Join(",", resultDeckShuffled));
 
         }
 
         [Fact]
-        public void InitializeDeck_s_Something()
+        public void ShufflesAllDecks_DeckCollection_ShuffledValidDecksWithinDeckCollection()
         {
-            //Checks if there is no repeating numbers
-            //Is this test needed?
+            var deckBuilder = new DeckBuilder();
+            var testdeck = deckBuilder.InitializeDeck(3);
+            deckBuilder.ShufflesAllDecks(testdeck);
+
+            testdeck.ForEach(deck =>
+            {
+                Assert.Equal(DeckConstants.CardsInDeck, deck.Count);
+                _testOutputHelper.WriteLine(string.Join(",", deck));
+            });
+
+            
         }
+
+
+        
+
 
     }
 }
